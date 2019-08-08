@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Game #:nodoc:
-  attr_reader: space_used
-  attr_reader: player
+  attr_reader :space_used
+  attr_reader :player
   def initialize
     @board = [%w[_ _ _], %w[_ _ _], %w[_ _ _]]
     @player = 1
@@ -26,22 +26,24 @@ class Game #:nodoc:
 
   def display_board
     @board.each_with_index do |row, row_index|
+      row_string=" "
       row.each_with_index do |element, index|
-        print "|" if index != 0
-        print "#{element} "
+        row_string += " | " if index != 0
+        row_string += element
       end
-      puts "---------------" if row_index != 2
+      puts row_string
+      puts "-----------" if row_index != 2
     end
   end
 
   def make_move(index)
     @space_used += 1
     if @player == 1
-      @board[(index-1)/3.floor][(index-1)%3] = "X"
+      @board[(index.to_i-1)/3.floor][(index.to_i-1)%3] = "X"
       @moves_player1 += index
       @player = 2
     else
-      @board[(index-1)/3.floor][(index-1)%3] = "O"
+      @board[(index.to_i-1)/3.floor][(index.to_i-1)%3] = "O"
       @moves_player2 += index
       @player = 1
     end
