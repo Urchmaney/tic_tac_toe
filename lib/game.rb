@@ -16,29 +16,32 @@ class Game #:nodoc:
     if player_flag == 1
       moves = @moves_player2
     else
-      moves=@moves_player1
+      moves = @moves_player1
     end
     if moves.length > 3
       moves = moves[moves.length - 4, moves.length - 1]
     end
     winners.include?(moves)
-
-  end
-
-  def check_equality(first, second, third)
-    (first == second) && (second == third) ? true : false
   end
 
   def display_board
+    @board.each_with_index do |row, row_index|
+      row.each_with_index do |element, index|
+        print "|" if index != 0
+        print "#{element} "
+      end
+      puts "---------------" if row_index != 2
+    end
   end
 
-  def make_move(letter, index)
+  def make_move(index)
     @space_used += 1
-    @board[(index-1)/3.floor][(index-1)%3] = letter
     if @player == 1
+      @board[(index-1)/3.floor][(index-1)%3] = "X"
       @moves_player1 += index
       @player = 2
-    if @player == 2
+    else
+      @board[(index-1)/3.floor][(index-1)%3] = "O"
       @moves_player2 += index
       @player = 1
     end
