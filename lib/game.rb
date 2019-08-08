@@ -13,7 +13,7 @@ class Game #:nodoc:
 
   def check_for_win(player_flag)
     winners = ["123","456","789","147","258","369","159","357"]
-    if player_flag == 1 
+    if player_flag == 1
       moves = @moves_player2
     else
       moves=@moves_player1
@@ -22,6 +22,11 @@ class Game #:nodoc:
       moves = moves[moves.length - 4, moves.length - 1]
     end
     winners.include?(moves)
+
+  end
+
+  def check_equality(first, second, third)
+    (first == second) && (second == third) ? true : false
   end
 
   def display_board
@@ -39,6 +44,5 @@ class Game #:nodoc:
     end
   end
 end
-
 # game = Game.new
 # puts game.check_for_win
