@@ -1,45 +1,44 @@
 # frozen_string_literal: true
 
 class Game #:nodoc:
+  attr_reader: space_used
+  attr_reader: player
   def initialize
     @board = [%w[_ _ _], %w[_ _ _], %w[_ _ _]]
     @player = 1
     @space_used = 0
+    @moves_player1 = ""
+    @moves_player2 = ""
   end
 
-  def check_for_win
-    if (@board[0][0] == @board[1][0]) && (@board[1][0] == @board[2][0]) # left
-      return true
+  def check_for_win(player_flag)
+    winners = ["123","456","789","147","258","369","159","357"]
+    if player_flag == 1 
+      moves = @moves_player2
+    else
+      moves=@moves_player1
     end
-    if (@board[0][0] == @board[1][1]) && (@board[1][1] == @board[2][2]) # left Diagonal
-      return true
+    if moves.length > 3
+      moves = moves[moves.length - 4, moves.length - 1]
     end
-    if (@board[0][1] == @board[1][1]) && (@board[1][1] == @board[2][1]) # middle vertical
-      return true
-    end
-    if (@board[0][2] == @board[1][2]) && (@board[1][2] == @board[2][2]) # right
-      return true
-    end
-    if (@board[1][0] == @board[1][1]) && (@board[1][1] == @board[1][2]) # middle horizontal
-      return true
-    end
-    if (@board[2][0] == @board[2][1]) && (@board[2][1] == @board[2][2]) # down
-      return true
-    end
-    if (@board[0][0] == @board[0][1]) && (@board[0][1] == @board[0][2]) # top
-      return true
-    end
-    if (@board[0][2] == @board[1][1]) && (@board[1][1] == @board[2][0]) # right diagonal
-      return true
-    end
-    false
+    winners.include?(moves)
   end
 
   def display_board
   end
 
-  def all_space_used
+  def make_move(letter, index)
+    @space_used += 1
+    @board[(index-1)/3.floor][(index-1)%3] = letter
+    if @player == 1
+      @moves_player1 += index
+      @player = 2
+    if @player == 2
+      @moves_player2 += index
+      @player = 1
+    end
   end
 end
+
 # game = Game.new
 # puts game.check_for_win
