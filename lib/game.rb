@@ -20,7 +20,7 @@ class Game #:nodoc:
     if check_equality(@board[0][2], @board[1][2], @board[2][2]) # right
       return true
     end
-    if check_equality(@board[1][0], @board[1][1], @board[1][2) # middle horizontal
+    if check_equality(@board[1][0], @board[1][1], @board[1][2]) # middle horizontal
       return true
     end
     if check_equality(@board[2][0], @board[2][1], @board[2][2]) # down
