@@ -14,19 +14,19 @@ class Game #:nodoc:
     if (@board[0][0] == @board[1][1]) && (@board[1][1] == @board[2][2]) # left Diagonal
       return true
     end
-    if (@board[0][1] == @board[1][1]) && (@board[1][1] == @board[2][1]) || # middle vertical
+    if (@board[0][1] == @board[1][1]) && (@board[1][1] == @board[2][1]) # middle vertical
       return true
     end
-    if (@board[0][2] == @board[1][2]) && (@board[1][2] == @board[2][2]) || # right
+    if (@board[0][2] == @board[1][2]) && (@board[1][2] == @board[2][2]) # right
       return true
     end
-    if (@board[1][0] == @board[1][1]) && (@board[1][1] == @board[1][2]) || # middle horizontal
+    if (@board[1][0] == @board[1][1]) && (@board[1][1] == @board[1][2]) # middle horizontal
       return true
     end
-    if (@board[2][0] == @board[2][1]) && (@board[2][1] == @board[2][2]) || # down
+    if (@board[2][0] == @board[2][1]) && (@board[2][1] == @board[2][2]) # down
       return true
     end
-    if (@board[0][0] == @board[0][1]) && (@board[0][1] == @board[0][2]) || # top
+    if (@board[0][0] == @board[0][1]) && (@board[0][1] == @board[0][2]) # top
       return true
     end
     if (@board[0][2] == @board[1][1]) && (@board[1][1] == @board[2][0]) # right diagonal
