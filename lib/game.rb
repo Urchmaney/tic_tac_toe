@@ -12,7 +12,7 @@ class Game #:nodoc:
   end
 
   def check_for_win(player_flag)
-    winners = %w[123, 456, 789, 147, 258, 369, 159, 357]
+    winners = %w[123 456 789 147 258 369 159 357]
     moves = player_flag == 1 ? @moves_player2 : @moves_player1
     moves = moves[moves.length - 4, moves.length - 1] if moves.length > 3
     winners.include?(moves)

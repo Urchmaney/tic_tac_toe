@@ -10,7 +10,7 @@ def start_game
     move = gets.chomp
     game.make_move(move.to_s)
     game.display_board
-    unless !game.check_for_win(game.player)
+    if game.check_for_win(game.player)
       puts game.player == 2 ? 'Congratulations player 1 you have won.' : 'Congratulations player 2 you have won.'
       break
     end
