@@ -35,12 +35,17 @@ class Game #:nodoc:
     if @player == 1
       @board[(index.to_i - 1) / 3.floor][(index.to_i - 1) % 3] = 'X'
       @moves_player1 += index
-      @player = 2
+      toggle_player(2)
     else
       @board[(index.to_i - 1) / 3.floor][(index.to_i - 1) % 3] = 'O'
       @moves_player2 += index
-      @player = 1
+      toggle_player(1)
     end
+  end
+
+  private
+  def toggle_player(value)
+    @player=value
   end
 end
 # game = Game.new
