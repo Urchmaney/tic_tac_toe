@@ -10,7 +10,7 @@ class Game #:nodoc:
   attr_reader :board
 
   def initialize(player_1_name, palyer_2_name)
-    @board = Board.new    
+    @board = Board.new
     @player1 = Player.new(player_1_name, 'X')
     @player2 = Player.new(palyer_2_name, 'O')
   end
