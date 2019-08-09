@@ -5,14 +5,14 @@ require '../lib/player'
 
 class Game #:nodoc:
   attr_reader :space_used
-  attr_reader :player_1
-  attr_reader :player_2
+  attr_reader :player1
+  attr_reader :player2
   attr_reader :board
 
   def initialize(player_1_name, palyer_2_name)
     @board = Board.new    
-    @player_1 = Player.new(player_1_name, 'X')
-    @player_2 = Player.new(palyer_2_name, 'O')
+    @player1 = Player.new(player_1_name, 'X')
+    @player2 = Player.new(palyer_2_name, 'O')
   end
 
   def check_for_win(player)
@@ -24,7 +24,7 @@ class Game #:nodoc:
       moves.each_char do |char|
         check += 1 if element.include?(char)
       end
-      check == 3 ? true : false
+      check == 3
     end
   end
 
