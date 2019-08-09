@@ -26,18 +26,19 @@ def start_game
   player_1_name = gets.chomp
   puts 'Input second player name'
   player_2_name = gets.chomp
-  game = Game.new(player_1_name,player_2_name)
+  game = Game.new(player_1_name, player_2_name)
   display_board(game.board.array)
   while game.board.space_used < 9
-    player_move(game.player_1,game)
-    if game.check_for_win(game.player_1)
-      puts "Congratulations #{game.player_1.name} you have won."
+    player_move(game.player1, game)
+    if game.check_for_win(game.player1)
+      puts "Congratulations #{game.player1.name} you have won."
       break
     end
     break if game.board.space_used > 8
-    player_move(game.player_2,game)
-    if game.check_for_win(game.player_2)
-      puts "Congratulations #{game.player_2.name} you have won."
+
+    player_move(game.player2, game)
+    if game.check_for_win(game.player2)
+      puts "Congratulations #{game.player2.name} you have won."
       break
     end
   end
