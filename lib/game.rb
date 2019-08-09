@@ -1,46 +1,37 @@
 # frozen_string_literal: true
 
+require '../lib/board'
+require '../lib/player'
+
 class Game #:nodoc:
   attr_reader :space_used
-  attr_reader :player
-  def initialize
-    @board = [%w[_ _ _], %w[_ _ _], %w[_ _ _]]
-    @player = 1
-    @space_used = 0
-    @moves_player1 = ''
-    @moves_player2 = ''
+  attr_reader :player_1
+  attr_reader :player_2
+  attr_reader :board
+
+  def initialize(player_1_name, palyer_2_name)
+    @board = Board.new    
+    @player_1 = Player.new(player_1_name, 'X')
+    @player_2 = Player.new(palyer_2_name, 'O')
   end
 
-  def check_for_win(player_flag)
+  def check_for_win(player)
     winners = %w[123 456 789 147 258 369 159 357]
-    moves = player_flag == 1 ? @moves_player2 : @moves_player1
-    moves = moves[moves.length - 4, moves.length - 1] if moves.length > 3
-    winners.include?(moves)
-  end
-
-  def display_board
-    @board.each_with_index do |row, row_index|
-      row_string = ' '
-      row.each_with_index do |element, index|
-        row_string += ' | ' if index != 0
-        row_string += element
+    moves = player.moves
+    # moves = moves[moves.length - 3..moves.length - 1] if moves.length > 3
+    winners.any? do |element|
+      check = 0
+      moves.each_char do |char|
+        check += 1 if element.include?(char)
       end
-      puts row_string
-      puts '-----------' if row_index != 2
+      check == 3 ? true : false
     end
   end
 
-  def make_move(index)
-    @space_used += 1
-    if @player == 1
-      @board[(index.to_i - 1) / 3.floor][(index.to_i - 1) % 3] = 'X'
-      @moves_player1 += index
-      @player = 2
-    else
-      @board[(index.to_i - 1) / 3.floor][(index.to_i - 1) % 3] = 'O'
-      @moves_player2 += index
-      @player = 1
-    end
+  def make_move(index, player)
+    @board.space_used += 1
+    @board.register_play(((index.to_i - 1) / 3.floor), ((index.to_i - 1) % 3), player.letter_assigned)
+    player.moves += index
   end
 end
 # game = Game.new
