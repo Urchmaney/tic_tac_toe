@@ -19,9 +19,6 @@ def player_move(player, game)
   move = gets.chomp
   game.make_move(move.to_s, player)
   display_board(game.board.array)
-  if game.check_for_win(player)
-    puts "Congratulations #{player.name}  you have won."
-  end
 end
 
 def start_game
@@ -33,8 +30,16 @@ def start_game
   display_board(game.board.array)
   while game.board.space_used < 9
     player_move(game.player_1,game)
+    if game.check_for_win(game.player_1)
+      puts "Congratulations #{game.player_1.name} you have won."
+      break
+    end
     break if game.board.space_used > 8
     player_move(game.player_2,game)
+    if game.check_for_win(game.player_2)
+      puts "Congratulations #{game.player_2.name} you have won."
+      break
+    end
   end
   puts 'The game is over!!!'
 end
