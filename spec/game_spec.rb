@@ -67,4 +67,21 @@ RSpec.describe(Game) do
       expect { game.check_for_win(game) }.to raise_error(NoMethodError)
     end
   end
+  
+  describe '#make_move' do
+    it 'Stores player moves in the player object moves instance variable' do
+      move = '8'
+      game.make_move(move, game.player1)
+      expect(game.player1.moves[-1]).to eql(move)
+    end
+    it 'Stores player moves in the player object moves instance variable' do
+      move = '8'
+      game.make_move(move, game.player1)
+      expect(game.player1.moves[-1]).not_to eql(9)
+    end
+    it 'Stores player moves in the player object moves instance variable' do
+      move = 9      
+      expect { game.make_move(move, game.player1) }.to raise_error(TypeError)
+    end
+  end
 end
