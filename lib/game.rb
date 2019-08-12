@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative '../lib/player'
+require_relative '../lib/board'
+
 class Game #:nodoc:
   attr_reader :space_used
   attr_reader :player1
@@ -21,7 +24,7 @@ class Game #:nodoc:
       moves.each_char do |char|
         check += 1 if element.include?(char)
       end
-      check == 3
+      check >= 3
     end
   end
 
@@ -29,32 +32,6 @@ class Game #:nodoc:
     @board.space_used += 1
     @board.register_play(((index.to_i - 1) / 3.floor), ((index.to_i - 1) % 3), player.letter_assigned)
     player.moves += index
-  end
-end
-
-class Player #:nodoc:
-  attr_reader :letter_assigned
-  attr_accessor :moves
-  attr_reader :name
-
-  def initialize(name, letter_assigned)
-    @name = name
-    @letter_assigned = letter_assigned
-    @moves = ''
-  end
-end
-
-class Board #:nodoc:
-  attr_reader :array
-  attr_accessor :space_used
-
-  def initialize
-    @array = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
-    @space_used = 0
-  end
-
-  def register_play(row, column, letter)
-    @array[row][column] = letter
   end
 end
 # game = Game.new
