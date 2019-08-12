@@ -9,4 +9,3 @@ class Player #:nodoc:
     @moves = ''
   end
 end
-  
