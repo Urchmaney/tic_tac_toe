@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Board #:nodoc:
   attr_reader :array
   attr_accessor :space_used

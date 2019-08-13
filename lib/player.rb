@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Player #:nodoc:
   attr_reader :letter_assigned
   attr_accessor :moves

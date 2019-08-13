@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require '../lib/board'
-require '../lib/player'
+require_relative '../lib/player'
+require_relative '../lib/board'
 
 class Game #:nodoc:
   attr_reader :space_used
@@ -24,7 +24,7 @@ class Game #:nodoc:
       moves.each_char do |char|
         check += 1 if element.include?(char)
       end
-      check == 3
+      check >= 3
     end
   end
 
